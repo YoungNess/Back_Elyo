@@ -11,24 +11,23 @@ public class SaeService {
 
     private final SaeRepository saeRepository;
 
-    public SaeService(SaeRepository saeRepository){
+    public SaeService(SaeRepository saeRepository) {
         this.saeRepository = saeRepository;
     }
 
-    public Sae create(Sae sae){
+    public Sae create(Sae sae) {
         return saeRepository.save(sae);
     }
 
-    public List<Sae> getAll(){
+    public List<Sae> getAll() {
         return saeRepository.findAll();
     }
 
-    public List<Sae> getByDomain(String domaine){
-        return saeRepository.findByDomaine(domaine);
-    }
-
-    public List<Sae> getBySemestre(String semestre){
+    public List<Sae> getBySemestre(int semestre) {
         return saeRepository.findBySemestre(semestre);
     }
 
+    public List<Sae> getByDomaineId(Long domaineId) {
+        return saeRepository.findByDomaineId(domaineId);
+    }
 }

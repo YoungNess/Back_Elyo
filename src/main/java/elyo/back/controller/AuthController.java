@@ -1,33 +1,29 @@
 package elyo.back.controller;
 
-import elyo.back.model.Student;
-import elyo.back.service.StudentService;
+import elyo.back.model.Etudiant;
+import elyo.back.service.EtudiantService;
 
 import java.util.Optional;
 
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
 
-    private final StudentService studentService;
+    private final EtudiantService etudiantService;
 
-    public AuthController(StudentService studentService) {
-        this.studentService = studentService;
+    public AuthController(EtudiantService etudiantService) {
+        this.etudiantService = etudiantService;
     }
 
     @PostMapping("/login")
-    public Optional<Student> login(@RequestParam String studentNumber){
-        return studentService.login(studentNumber);
+    public Optional<Etudiant> login(@RequestParam String email) {
+        return etudiantService.findByEmail(email);
     }
 
     @PostMapping("/add")
-    public Student addStudent(@RequestBody Student student){
-        return studentService.create(student);
+    public Etudiant addEtudiant(@RequestBody Etudiant etudiant) {
+        return etudiantService.create(etudiant);
     }
 }
